@@ -62,9 +62,9 @@ else use congestion avoidance
 //#define CC_DEBUG_PRINTF_5(x,y,z,a,b) printf(x,y,z,a,b)
 
 /// Set to 4 if you are using the iPod Touch TG. See http://www.jenkinssoftware.com/forum/index.php?topic=2717.0
-#define CC_TIME_TYPE_BYTES 8
+#define CC_TIME_TYPE_BytesYTES 8
 
-#if CC_TIME_TYPE_BYTES==8
+#if CC_TIME_TYPE_BytesYTES==8
 typedef RakNet::TimeUS CCTimeType;
 #else
 typedef RakNet::TimeMS CCTimeType;
@@ -129,12 +129,12 @@ class CCRakNetSlidingWindow
 	/// hasBAndAS are possibly written with the ack, see OnSendAck()
 	/// B and AS are used in the calculations in UpdateWindowSizeAndAckOnAckPerSyn
 	/// B and AS are updated at most once per SYN 
-	void OnAck(CCTimeType curTime, CCTimeType rtt, bool hasBAndAS, BytesPerMicrosecond _B, BytesPerMicrosecond _AS, double totalUserDataBytesAcked, bool isContinuousSend, DatagramSequenceNumberType sequenceNumber );
+	void OnAck(CCTimeType curTime, CCTimeType rtt, bool hasBAndAS, BytesPerMicrosecond _Bytes, BytesPerMicrosecond _AS, double totalUserDataBytesAcked, bool isContinuousSend, DatagramSequenceNumberType sequenceNumber );
 	void OnDuplicateAck( CCTimeType curTime, DatagramSequenceNumberType sequenceNumber );
 	
 	/// Call when you send an ack, to see if the ack should have the B and AS parameters transmitted
 	/// Call before calling OnSendAck()
-	void OnSendAckGetBAndAS(CCTimeType curTime, bool *hasBAndAS, BytesPerMicrosecond *_B, BytesPerMicrosecond *_AS);
+	void OnSendAckGetBAndAS(CCTimeType curTime, bool *hasBAndAS, BytesPerMicrosecond *_Bytes, BytesPerMicrosecond *_AS);
 
 	/// Call when we send an ack, to write B and AS if needed
 	/// B and AS are only written once per SYN, to prevent slow calculations

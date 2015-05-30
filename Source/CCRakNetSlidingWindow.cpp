@@ -14,7 +14,7 @@
 
 static const double UNSET_TIME_US=-1;
 
-#if CC_TIME_TYPE_BYTES==4
+#if CC_TIME_TYPE_BytesYTES==4
 static const CCTimeType SYN=10;
 #else
 static const CCTimeType SYN=10000;
@@ -198,9 +198,9 @@ void CCRakNetSlidingWindow::OnNAK(CCTimeType curTime, DatagramSequenceNumberType
 	}
 }
 // ----------------------------------------------------------------------------------------------------------------------------
-void CCRakNetSlidingWindow::OnAck(CCTimeType curTime, CCTimeType rtt, bool hasBAndAS, BytesPerMicrosecond _B, BytesPerMicrosecond _AS, double totalUserDataBytesAcked, bool isContinuousSend, DatagramSequenceNumberType sequenceNumber )
+void CCRakNetSlidingWindow::OnAck(CCTimeType curTime, CCTimeType rtt, bool hasBAndAS, BytesPerMicrosecond _Bytes, BytesPerMicrosecond _AS, double totalUserDataBytesAcked, bool isContinuousSend, DatagramSequenceNumberType sequenceNumber )
 {
-	(void) _B;
+	(void) _Bytes;
 	(void) totalUserDataBytesAcked;
 	(void) _AS;
 	(void) hasBAndAS;
@@ -261,10 +261,10 @@ void CCRakNetSlidingWindow::OnDuplicateAck( CCTimeType curTime, DatagramSequence
 	(void) sequenceNumber;
 }
 // ----------------------------------------------------------------------------------------------------------------------------
-void CCRakNetSlidingWindow::OnSendAckGetBAndAS(CCTimeType curTime, bool *hasBAndAS, BytesPerMicrosecond *_B, BytesPerMicrosecond *_AS)
+void CCRakNetSlidingWindow::OnSendAckGetBAndAS(CCTimeType curTime, bool *hasBAndAS, BytesPerMicrosecond *_Bytes, BytesPerMicrosecond *_AS)
 {
 	(void) curTime;
-	(void) _B;
+	(void) _Bytes;
 	(void) _AS;
 
 	*hasBAndAS=false;
@@ -289,7 +289,7 @@ CCTimeType CCRakNetSlidingWindow::GetRTOForRetransmission(unsigned char timesSen
 {
 	(void) timesSent;
 
-#if CC_TIME_TYPE_BYTES==4
+#if CC_TIME_TYPE_BytesYTES==4
 	const CCTimeType maxThreshold=2000;
 	//const CCTimeType minThreshold=100;
 	const CCTimeType additionalVariance=30;
